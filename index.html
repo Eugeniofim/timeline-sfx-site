@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timeline SFX · Desenho de som com IA para Mac</title>
+<meta name="description" content="O Timeline SFX assiste o seu vídeo plano a plano, mapeia tudo o que precisa soar e monta o desenho de som em camadas, pronto para o Logic, o Premiere e o Resolve.">
+<meta property="og:title" content="Timeline SFX · Desenho de som com IA para Mac">
+<meta property="og:description" content="Esse comercial chegou mudo. A IA desenhou todo o som.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eugeniofim.github.io/timeline-sfx-site/">
+<meta property="og:image" content="https://eugeniofim.github.io/timeline-sfx-site/midia/poster-gls.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EFE6D6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0B0D'/%3E%3Crect x='7' y='14' width='5' height='11' rx='1.5' fill='%23F5C451'/%3E%3Crect x='13.5' y='7' width='5' height='18' rx='1.5' fill='%23F5C451'/%3E%3Crect x='20' y='11' width='5' height='14' rx='1.5' fill='%23F5C451'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Sora:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <a class="marca" href="#inicio" aria-label="Timeline SFX, início">
+    <span class="barras" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="nome">Timeline <b>SFX</b></span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="#como">Como funciona</a>
+    <a href="#aberto">Modelo aberto</a>
+    <a href="#valores">Valores</a>
+  </nav>
+  <a class="botao botao--tinta botao--p" href="#baixar">Baixar para Mac</a>
+</header>
+
+<main id="conteudo">
+  <section class="heroi" id="inicio">
+    <h1>Esse comercial chegou mudo.<br>A IA desenhou <mark>todo o som.</mark></h1>
+    <div class="heroi-pe">
+      <p>O Timeline SFX é um app para Mac que assiste o seu vídeo plano a plano, mapeia tudo o que precisa soar e monta o desenho de som em camadas, pronto para mixar.</p>
+      <div class="heroi-acoes">
+        <a class="botao botao--tinta" href="#baixar">Baixar para Mac</a>
+        <button class="botao botao--fio" type="button" data-ligar-som>Ouvir a demonstração</button>
+      </div>
+    </div>
+
+    <div class="video-cena">
+      <div class="video-palco" id="palco-video">
+        <video id="demo" autoplay muted loop playsinline preload="metadata" poster="midia/poster-gls.jpg" aria-label="Demonstração: o comercial da GLS com o som feito pelo Timeline SFX e a timeline do projeto correndo embaixo">
+          <source src="midia/demo.mp4" type="video/mp4">
+        </video>
+        <div class="video-controles">
+          <button class="botao botao--amarelo" type="button" id="som" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path class="onda" d="M15.5 8.8a4.6 4.6 0 0 1 0 6.4M18.2 6.2a8.4 8.4 0 0 1 0 11.6"/><path class="corte" d="M16 9.5l5 5m0-5l-5 5"/></svg>
+            <span>Ligar o som</span>
+          </button>
+          <button class="botao botao--vidro" type="button" id="abrir-review" aria-label="Ver o review completo, 1 minuto e 37 segundos">Review · 1:37</button>
+        </div>
+      </div>
+      <p class="legenda">Comercial “That Parcel On Your Mind”, da GLS. Chegou sem áudio; todo o som é do Timeline SFX, sem música.</p>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <p class="manifesto-texto" id="manifesto">Não é um gerador de som solto. O Timeline SFX assiste o filme, escreve o mapa de tudo o que acontece e desenha o som inteiro, cada coisa no quadro certo.</p>
+    <ul class="sons" aria-label="Alguns dos sons do comercial">
+      <li>Passos na madeira</li><li>Salto alto</li><li>Jaqueta de couro</li><li>Talheres na mesa</li>
+      <li>Garçom ao fundo</li><li>Pombos levantando voo</li><li>Campainha da bike</li><li>Rodinhas da caixa</li>
+      <li>Papelão rangendo</li><li>Palmas da sala</li><li>Bipe do armário</li><li class="seu"><mark>O seu filme*</mark></li>
+    </ul>
+    <p class="nota">*Alguns dos 421 sons que a IA pôs nesse comercial de 30 segundos.</p>
+  </section>
+
+  <section class="cena" id="como" aria-label="Como funciona">
+    <div class="cena-fixa">
+      <div class="cena-palco" id="cena-palco">
+        <canvas id="cena3d" aria-hidden="true"></canvas>
+        <div class="rotulos" id="rotulos" aria-hidden="true"></div>
+        <ol class="passos" id="passos">
+          <li class="passo">
+            <span class="passo-n">01</span>
+            <h2>Assiste.</h2>
+            <p>A IA lê o filme inteiro, plano a plano: quem aparece, onde pisa, o que toca.</p>
+            <span class="passo-dado">19 planos · 30 segundos</span>
+          </li>
+          <li class="passo">
+            <span class="passo-n">02</span>
+            <h2>Mapeia.</h2>
+            <p>Cada ação vira uma linha do mapa, com o quadro exato em que ela acontece.</p>
+            <span class="passo-dado">759 linhas no mapa</span>
+          </li>
+          <li class="passo">
+            <span class="passo-n">03</span>
+            <h2>Desenha em camadas.</h2>
+            <p>Ambiência, passos, roupa, objetos, gente e câmera. Cada som na sua trilha.</p>
+            <span class="passo-dado">421 sons · 11 trilhas</span>
+          </li>
+          <li class="passo">
+            <span class="passo-n">04</span>
+            <h2>Exporta.</h2>
+            <p>Leve para o Logic, o Premiere ou o Resolve e mixe do seu jeito.</p>
+            <span class="passo-dado">AAF · XML · WAV por trilha</span>
+          </li>
+        </ol>
+        <div class="cena-barra" aria-hidden="true"><i id="cena-progresso"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="aberto" id="aberto">
+    <div class="aberto-topo">
+      <h2>Aberto.<br>Você liga as suas contas.</h2>
+      <p>O Timeline SFX é a ferramenta. A IA e os sons são seus: cada um usa as próprias chaves e a própria biblioteca, direto do Mac.</p>
+    </div>
+    <div class="aberto-grade">
+      <article class="card card--biblioteca">
+        <span class="etiqueta">Suas pastas</span>
+        <h3>Sua biblioteca de sons</h3>
+        <p>O app lê o nome e a duração. Os arquivos ficam onde estão. Quanto maior e mais bem nomeada, melhor fica o som.</p>
+        <ul class="arquivos" aria-hidden="true">
+          <li>Passos - sapato social, madeira 01.wav</li>
+          <li>Roupa - algodão, braço 03.wav</li>
+          <li>Pombos - voo, asas 02.wav</li>
+          <li>Rua calma - Paris, manhã.wav</li>
+        </ul>
+      </article>
+      <ul class="conectores">
+        <li><b>Claude</b><span>O cérebro: assiste o filme e faz o mapa</span></li>
+        <li><b>ElevenLabs</b><span>Cria o som que faltar</span></li>
+        <li><b>fal</b><span>Outros geradores de som</span></li>
+        <li><b>Stability</b><span>Mais um gerador na fila</span></li>
+        <li class="fim"><b>E outros conectores</b><span>A lista cresce com o app</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="valores" id="valores">
+    <h2>Valores.</h2>
+    <div class="valores-grade">
+      <article class="valor valor--chaves">
+        <h3>Com as suas chaves</h3>
+        <p class="valor-grande">menos de <b>US$ 4</b></p>
+        <p>por minuto de filme, pago direto a quem fornece a IA.</p>
+      </article>
+      <article class="valor valor--creditos">
+        <h3>Sem chave: créditos do app</h3>
+        <table>
+          <caption class="oculto">Pacotes de créditos</caption>
+          <tbody>
+            <tr><th scope="row">R$ 69</th><td>475 créditos</td></tr>
+            <tr><th scope="row">R$ 199</th><td>1.372 créditos</td></tr>
+            <tr><th scope="row">R$ 499</th><td>3.441 créditos</td></tr>
+          </tbody>
+        </table>
+        <p class="nota">Um minuto de filme usa uns 330 créditos na qualidade Econômica. Você compra dentro do app.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="baixar" id="baixar">
+    <div class="baixar-palco">
+      <div class="marca marca--grande" aria-hidden="true">
+        <span class="barras"><i></i><i></i><i></i></span>
+        <span class="nome">Timeline <b>SFX</b></span>
+      </div>
+      <h2 class="oculto">Baixar o Timeline SFX</h2>
+
+      <div class="baixar-caixa" id="caixa-entrar">
+        <p class="baixar-frase">Entre com o Google e baixe para o seu Mac.</p>
+        <button class="botao botao--branco botao--g" type="button" id="entrar-google">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.2v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.2a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A11.9 11.9 0 0 0 1.2 6.6l4.1 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>
+          Continuar com o Google
+        </button>
+        <p class="baixar-aviso" id="aviso-entrar" role="status"></p>
+        <p class="baixar-miudo">Usamos o seu e-mail do Google só para criar a sua conta do Timeline SFX, a mesma do app.</p>
+      </div>
+
+      <div class="baixar-caixa" id="caixa-baixar" hidden>
+        <p class="baixar-frase">Pronto, <span id="quem"></span>.</p>
+        <a class="botao botao--amarelo botao--g" id="link-dmg" href="#" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
+          <span>Baixar para Mac</span>
+        </a>
+        <p class="baixar-miudo" id="dmg-dados"></p>
+        <ol class="baixar-passos">
+          <li>Abra o arquivo e arraste o Timeline SFX para Aplicativos.</li>
+          <li>Na primeira vez, o Mac avisa que não conseguiu verificar o app. Abra Ajustes do Sistema, Privacidade e Segurança, e clique em Abrir Mesmo Assim.</li>
+          <li>Entre com esta mesma conta do Google dentro do app.</li>
+        </ol>
+        <button class="link-sair" type="button" id="sair">Sair desta conta</button>
+      </div>
+
+      <p class="baixar-req">Mac com Apple Silicon (M1 ou mais novo) · macOS 13 ou mais novo</p>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <span>© 2026 Ti Artes</span>
+  <a href="mailto:contato@eugeniofim.com">contato@eugeniofim.com</a>
+</footer>
+
+<dialog id="d-review" aria-label="Review completo do Timeline SFX">
+  <button class="fechar" type="button" id="fechar-review" aria-label="Fechar">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <video id="review" controls playsinline preload="none" poster="midia/poster-gls.jpg">
+    <source src="midia/review.mp4" type="video/mp4">
+  </video>
+</dialog>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
