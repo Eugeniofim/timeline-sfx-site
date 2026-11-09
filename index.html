@@ -30,7 +30,7 @@
   <nav aria-label="Principal">
     <a href="#como">Como funciona</a>
     <a href="#aberto">Modelo aberto</a>
-    <a href="#valores">Valores</a>
+    <a href="#valores">Planos</a>
   </nav>
   <a class="botao botao--tinta botao--p" href="#baixar">Baixar para Mac</a>
 </header>
@@ -137,15 +137,58 @@
   </section>
 
   <section class="valores" id="valores">
-    <h2>Valores.</h2>
+    <div class="aberto-topo">
+      <h2>Planos.</h2>
+      <p>Você assina a ferramenta por mês. São 7 dias grátis, sem cartão. No teste, a IA sai da sua chave da Claude ou de créditos.</p>
+    </div>
+    <div class="planos">
+      <article class="plano">
+        <span class="etiqueta">Com as suas chaves de IA</span>
+        <h3>Suas contas</h3>
+        <p class="plano-preco">R$ 99<small>/mês</small></p>
+        <p class="plano-nota">R$ 69 para os 50 primeiros, enquanto mantiverem a assinatura.</p>
+        <ul>
+          <li>O app completo</li>
+          <li>A IA sai da sua chave da Claude</li>
+          <li>Até 2 Macs</li>
+        </ul>
+        <a class="botao botao--fio" href="#baixar">Testar 7 dias grátis</a>
+      </article>
+      <article class="plano plano--destaque">
+        <span class="etiqueta">Com a nossa IA, sem chave</span>
+        <h3>Produtora</h3>
+        <p class="plano-preco">R$ 199<small>/mês</small></p>
+        <p class="plano-nota">1.660 créditos por mês.</p>
+        <ul>
+          <li>O app completo</li>
+          <li>Uns 5 minutos de filme por mês, na qualidade Econômica</li>
+          <li>Até 2 Macs</li>
+        </ul>
+        <a class="botao botao--amarelo" href="#baixar">Testar 7 dias grátis</a>
+      </article>
+      <article class="plano">
+        <span class="etiqueta">Para equipes</span>
+        <h3>Casa de áudio</h3>
+        <p class="plano-preco">R$ 599<small>/mês</small></p>
+        <p class="plano-nota">4.980 créditos por mês.</p>
+        <ul>
+          <li>O app completo</li>
+          <li>Uns 15 minutos de filme por mês, na qualidade Econômica</li>
+          <li>Uma conta para até 3 pessoas, em até 6 Macs</li>
+        </ul>
+        <a class="botao botao--fio" href="#baixar">Testar 7 dias grátis</a>
+      </article>
+    </div>
+    <p class="planos-sons"><b>Os sons não vêm no plano.</b> Eles saem da sua biblioteca ou de uma conta sua de geração, como ElevenLabs ou fal.</p>
+    <p class="planos-miudo">Por enquanto, a assinatura sai por um e-mail pronto dentro do app; Pix e cartão chegam em breve. Se o pagamento parar, você continua abrindo e ouvindo os seus projetos, e nada é apagado.</p>
     <div class="valores-grade">
       <article class="valor valor--chaves">
-        <h3>Com as suas chaves</h3>
-        <p class="valor-grande">menos de <b>US$ 4</b></p>
-        <p>por minuto de filme, pago direto a quem fornece a IA.</p>
+        <h3>Quanto custa a IA com as suas chaves</h3>
+        <p class="valor-grande">uns <b>US$ 4</b></p>
+        <p>por minuto de filme, com a sua biblioteca, na qualidade Econômica. Gerando todos os sons por IA, uns US$ 14. Você paga direto a quem fornece a IA, e o valor varia com o filme.</p>
       </article>
       <article class="valor valor--creditos">
-        <h3>Sem chave: créditos do app</h3>
+        <h3>Créditos avulsos</h3>
         <table>
           <caption class="oculto">Pacotes de créditos</caption>
           <tbody>
@@ -154,7 +197,7 @@
             <tr><th scope="row">R$ 499</th><td>3.441 créditos</td></tr>
           </tbody>
         </table>
-        <p class="nota">Um minuto de filme usa uns 330 créditos na qualidade Econômica. Por enquanto, o pedido sai por um e-mail pronto dentro do app; Pix e cartão chegam em breve.</p>
+        <p class="nota">Para quando o mês apertar: somam ao plano e não vencem. Um minuto de filme usa uns 330 créditos na qualidade Econômica. O pedido também sai por e-mail dentro do app.</p>
       </article>
     </div>
   </section>
@@ -168,7 +211,7 @@
       <h2 class="oculto">Baixar o Timeline SFX</h2>
 
       <div class="baixar-caixa" id="caixa-entrar">
-        <p class="baixar-frase">Entre com o Google e baixe para o seu Mac.</p>
+        <p class="baixar-frase">Entre com o Google, baixe para o seu Mac e teste por 7 dias, de graça.</p>
         <button class="botao botao--branco botao--g" type="button" id="entrar-google">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.2v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.2a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A11.9 11.9 0 0 0 1.2 6.6l4.1 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>
           Continuar com o Google

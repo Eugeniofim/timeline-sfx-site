@@ -125,7 +125,26 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 /* valores */
 .valores { padding: 150px var(--margem) 150px; }
 .valores h2 { font-size: clamp(2.5rem, 5.5vw, 6.2rem); }
-.valores-grade { display: grid; grid-template-columns: 1fr 1.1fr; margin-top: 56px; border-top: 2px solid var(--tinta); }
+.planos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 64px; }
+.plano { display: flex; flex-direction: column; background: var(--papel); border-radius: var(--raio); padding: 40px; }
+.plano--destaque { background: var(--palco); color: var(--marfim); }
+.plano .etiqueta { color: var(--tinta-2); }
+.plano--destaque .etiqueta { color: var(--amarelo); }
+.plano h3 { margin-top: 18px; font: 800 clamp(1.7rem, 2.6vw, 2.6rem)/1.02 var(--titulo); font-stretch: 125%; font-variation-settings: 'wdth' 125; letter-spacing: -.025em; }
+.plano-preco { margin-top: 30px; font: 800 clamp(2.4rem, 3.6vw, 4.4rem)/1 var(--titulo); font-stretch: 125%; font-variation-settings: 'wdth' 125; letter-spacing: -.03em; white-space: nowrap; }
+.plano-preco small { margin-left: 6px; font: 500 18px/1 var(--texto); font-stretch: 100%; font-variation-settings: normal; letter-spacing: 0; color: var(--tinta-2); }
+.plano--destaque .plano-preco { color: var(--amarelo); }
+.plano--destaque .plano-preco small { color: var(--marfim-2); }
+.plano-nota { margin-top: 12px; min-height: 2.8em; font-size: 17px; font-weight: 500; line-height: 1.4; }
+.plano ul { display: grid; gap: 10px; margin: 22px 0 32px; font-size: 17px; line-height: 1.35; }
+.plano li { display: grid; grid-template-columns: 24px 1fr; }
+.plano li::before { content: '✓'; }
+.plano--destaque li::before { color: var(--amarelo); }
+.plano .botao { margin-top: auto; }
+.planos-sons { margin-top: 32px; max-width: 68ch; font-size: 20px; line-height: 1.4; }
+.planos-sons b { font-weight: 600; background: var(--amarelo); padding: 0 .14em; border-radius: .12em; }
+.planos-miudo { margin-top: 10px; max-width: 68ch; font-size: 17px; line-height: 1.45; color: var(--tinta-2); }
+.valores-grade { display: grid; grid-template-columns: 1fr 1.1fr; margin-top: 72px; border-top: 2px solid var(--tinta); }
 .valor { padding: 40px 0 0; }
 .valor--creditos { padding-left: 56px; border-left: 1px solid var(--linha); }
 .valor--chaves { padding-right: 56px; }
@@ -182,6 +201,11 @@ dialog#d-review video { height: min(90vh, 900px); height: min(90svh, 900px); wid
   .video-controles { position: static; width: auto; flex-direction: row; justify-content: center; padding: 14px; background: var(--palco); }
   .video-controles .botao { padding: 0 22px; }
 }
+@media (max-width: 1100px) {
+  .planos { grid-template-columns: 1fr; }
+  .plano--destaque { order: -1; }
+  .plano-nota { min-height: 0; }
+}
 @media (max-width: 860px) {
   .topo nav { display: none; }
   .topo .botao { margin-left: auto; }
@@ -223,6 +247,8 @@ dialog#d-review video { height: min(90vh, 900px); height: min(90svh, 900px); wid
   .conectores { padding: 4px 28px; }
   .arquivos { font-size: 13px; }
   .valores { padding-block: 96px; }
+  .plano { padding: 30px; }
+  .plano .botao { width: 100%; }
   .baixar { padding: 0 10px 10px; }
   .baixar-palco { padding: 64px 22px 32px; }
   .baixar-caixa .botao { width: 100%; }
