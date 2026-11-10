@@ -2,7 +2,7 @@
 window.TSFX = {
   supabaseUrl: 'https://uopfqlogjzuqpabptxkb.supabase.co',
   supabaseChave: 'sb_publishable_VKIdd2RNpMf3e4IEDprxJw_TOKPIHT2',
-  versao: '0.2.34',
-  tamanho: '459 MB',
-  dmg: 'https://github.com/Eugeniofim/timeline-sfx-site/releases/download/v0.2.34/Timeline-SFX-0.2.34.dmg',
+  versao: '0.2.35',
+  tamanho: '457 MB',
+  dmg: 'https://github.com/Eugeniofim/timeline-sfx-site/releases/download/v0.2.35/Timeline-SFX-0.2.35.dmg',
 };
