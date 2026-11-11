@@ -29,6 +29,7 @@ function retomar() {
 }
 const parametros = new URLSearchParams(location.search);
 if (parametros.has('pago')) avisar('Pagamento enviado. Assim que ele cair, o plano libera sozinho e você recebe os dados no seu e-mail. Para usar, baixe o app na página inicial e entre com esta mesma conta.');
+if (parametros.has('teste')) $('#teste').hidden = false;
 if (parametros.has('cancelou')) avisar('O pagamento não foi concluído. Nada foi cobrado.');
 const escolhido = parametros.get('plano');
 if (escolhido && /^(Pro|Premium|Full)$/.test(escolhido)) {
