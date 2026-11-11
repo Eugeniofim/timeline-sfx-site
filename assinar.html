@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EFE6D6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0B0D'/%3E%3Crect x='7' y='14' width='5' height='11' rx='1.5' fill='%23F5C451'/%3E%3Crect x='13.5' y='7' width='5' height='18' rx='1.5' fill='%23F5C451'/%3E%3Crect x='20' y='11' width='5' height='14' rx='1.5' fill='%23F5C451'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Sora:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<title>Assinar · Timeline SFX</title>
+<meta name="description" content="Assine o Timeline SFX com cartão ou Pix.">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="./" aria-label="Timeline SFX, início">
+    <span class="barras" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="nome">Timeline <b>SFX</b></span>
+  </a>
+</header>
+<main class="assinar">
+  <h1>Assinar o Timeline SFX.</h1>
+  <p class="assinar-lead">No cartão, a assinatura renova sozinha todo mês. No Pix, você paga um mês por vez. O plano libera assim que o pagamento cai.</p>
+  <p class="assinar-aviso" id="aviso" role="status" hidden></p>
+  <div class="assinar-conta">
+    <span id="conta-texto">Entre com a mesma conta que você usa no app.</span>
+    <button class="botao botao--tinta botao--p" type="button" id="entrar">Entrar com o Google</button>
+    <button class="botao botao--fio botao--p" type="button" id="portal" hidden>Trocar cartão ou cancelar</button>
+    <button class="botao botao--fio botao--p" type="button" id="sair" hidden>Trocar de conta</button>
+  </div>
+  <div class="planos">
+      <article class="plano" id="plano-Pro">
+        <span class="etiqueta">Para quem tem chave de IA</span>
+        <h3>Pro</h3>
+        <p class="plano-preco">R$ 82<small>/mês</small></p>
+        <p class="plano-nota">Com a sua chave de IA.</p>
+        <ul>
+          <li>O app completo</li>
+          <li>A IA pela sua chave da Claude, paga direto à Anthropic</li>
+          <li>Até 2 Macs</li>
+        </ul>
+        <div class="plano-formas">
+          <button class="botao botao--tinta" type="button" data-pagar data-tipo="plano" data-plano="Pro" data-forma="cartao">Cartão: renova todo mês</button>
+          <button class="botao botao--fio" type="button" data-pagar data-tipo="plano" data-plano="Pro" data-forma="pix">Pix: paga um mês</button>
+        </div>
+      </article>
+      <article class="plano plano--destaque" id="plano-Premium">
+        <span class="etiqueta">Para produzir todo mês</span>
+        <h3>Premium</h3>
+        <p class="plano-preco">R$ 149<small>/mês</small></p>
+        <p class="plano-nota">1.240 créditos por mês.</p>
+        <ul>
+          <li>O app completo e a nossa IA</li>
+          <li>Quase 4 minutos de filme por mês, na qualidade Econômica</li>
+          <li>Até 2 Macs</li>
+        </ul>
+        <div class="plano-formas">
+          <button class="botao botao--amarelo" type="button" data-pagar data-tipo="plano" data-plano="Premium" data-forma="cartao">Cartão: renova todo mês</button>
+          <button class="botao botao--vidro" type="button" data-pagar data-tipo="plano" data-plano="Premium" data-forma="pix">Pix: paga um mês</button>
+        </div>
+      </article>
+      <article class="plano" id="plano-Full">
+        <span class="etiqueta">Para empresas com equipe</span>
+        <h3>Full</h3>
+        <p class="plano-preco">R$ 499<small>/mês</small></p>
+        <p class="plano-nota">4.150 créditos por mês.</p>
+        <ul>
+          <li>O app completo e a nossa IA</li>
+          <li>Uns 12 minutos de filme por mês, na qualidade Econômica</li>
+          <li>Uma conta para até 3 pessoas, em até 6 Macs</li>
+        </ul>
+        <div class="plano-formas">
+          <button class="botao botao--tinta" type="button" data-pagar data-tipo="plano" data-plano="Full" data-forma="cartao">Cartão: renova todo mês</button>
+          <button class="botao botao--fio" type="button" data-pagar data-tipo="plano" data-plano="Full" data-forma="pix">Pix: paga um mês</button>
+        </div>
+      </article>
+  </div>
+  <section class="assinar-creditos" id="creditos">
+    <h2>Créditos avulsos</h2>
+    <p class="assinar-lead">Para quando o mês apertar: somam ao plano e não vencem.</p>
+    <div class="creditos-lista">
+      <article class="credito">
+        <p class="credito-valor">R$ 69</p>
+        <p class="credito-nota">475 créditos</p>
+        <div class="plano-formas">
+          <button class="botao botao--tinta" type="button" data-pagar data-tipo="creditos" data-valor="69" data-forma="cartao">Cartão</button>
+          <button class="botao botao--fio" type="button" data-pagar data-tipo="creditos" data-valor="69" data-forma="pix">Pix</button>
+        </div>
+      </article>
+      <article class="credito">
+        <p class="credito-valor">R$ 199</p>
+        <p class="credito-nota">1.372 créditos</p>
+        <div class="plano-formas">
+          <button class="botao botao--tinta" type="button" data-pagar data-tipo="creditos" data-valor="199" data-forma="cartao">Cartão</button>
+          <button class="botao botao--fio" type="button" data-pagar data-tipo="creditos" data-valor="199" data-forma="pix">Pix</button>
+        </div>
+      </article>
+      <article class="credito">
+        <p class="credito-valor">R$ 499</p>
+        <p class="credito-nota">3.441 créditos</p>
+        <div class="plano-formas">
+          <button class="botao botao--tinta" type="button" data-pagar data-tipo="creditos" data-valor="499" data-forma="cartao">Cartão</button>
+          <button class="botao botao--fio" type="button" data-pagar data-tipo="creditos" data-valor="499" data-forma="pix">Pix</button>
+        </div>
+      </article>
+    </div>
+  </section>
+  <p class="planos-miudo">Pagamento processado pelo Stripe. Se o pagamento parar, você continua abrindo e ouvindo os seus projetos, e nada é apagado. Veja os <a href="termos.html">termos</a>.</p>
+</main>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script type="module" src="assinar.js"></script>
+</body>
+</html>
