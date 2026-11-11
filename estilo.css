@@ -175,6 +175,10 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 .baixar-caixa { margin-top: 56px; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 760px; }
 .baixar-passos, .baixar-miudo { max-width: 560px; }
 .baixar-caixa[hidden] { display: none; }
+.baixar-botoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.baixar-botoes .botao[hidden] { display: none; }
+.baixar-botoes .botao--branco svg { fill: none; stroke: currentColor; }   /* o branco do Google pinta o próprio ícone; a seta não */
+.baixar-passos[hidden] { display: none; }
 .baixar-frase { font-size: clamp(1.3rem, 2.2vw, 1.8rem); font-weight: 500; line-height: 1.25; margin-bottom: 26px; }
 .baixar-miudo { margin-top: 16px; font-size: 15px; color: var(--marfim-2); }
 .baixar-aviso { margin-top: 12px; font-size: 16px; color: var(--amarelo); min-height: 1.5em; }

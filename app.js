@@ -135,6 +135,24 @@ const cfg = window.TSFX;
 const sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseChave, { auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true } });
 const VOLTOU = 'tsfx-volta-baixar';
 
+// 11/11: Mac e Windows. O botão do sistema de quem visita vem amarelo e na frente; clicar no outro troca os passos.
+const SISTEMA = /Windows/i.test(navigator.userAgent) ? 'windows' : 'mac';
+let EMAIL = '';
+if (SISTEMA === 'windows') $('.baixar-botoes').prepend($('#link-exe'));
+function escolherSistema(sistema) {
+  for (const a of document.querySelectorAll('.baixar-botoes .botao')) {
+    a.classList.toggle('botao--amarelo', a.dataset.sistema === sistema);
+    a.classList.toggle('botao--branco', a.dataset.sistema !== sistema);
+  }
+  for (const ol of document.querySelectorAll('.baixar-passos[data-sistema]')) ol.hidden = ol.dataset.sistema !== sistema;
+  const w = cfg.windows || {};
+  const qual = sistema === 'windows' ? `Windows · versão ${w.versao} · ${w.tamanho}` : `Mac · versão ${cfg.versao} · ${cfg.tamanho}`;
+  // o instalador é do computador: no celular, avisa antes de gastar a internet da pessoa
+  const noCelular = /iPhone|iPad|Android/i.test(navigator.userAgent);
+  $('#dmg-dados').textContent = `${qual} · ${EMAIL}${noCelular ? ' · abra este site no seu computador para instalar' : ''}`;
+}
+for (const a of document.querySelectorAll('.baixar-botoes .botao')) a.addEventListener('click', () => escolherSistema(a.dataset.sistema));
+
 function mostrarConta(sessao) {
   const u = sessao?.user;
   $('#caixa-entrar').hidden = !!u;
@@ -143,10 +161,12 @@ function mostrarConta(sessao) {
   const nome = u.user_metadata?.full_name || u.user_metadata?.name || u.email;
   $('#quem').textContent = String(nome).split(/\s+/)[0];
   $('#link-dmg').href = cfg.dmg;
-  // o .dmg só instala no Mac: no celular, avisa antes de gastar a internet da pessoa
-  const noCelular = /iPhone|iPad|Android/i.test(navigator.userAgent);
-  $('#dmg-dados').textContent = `Versão ${cfg.versao} · ${cfg.tamanho} · ${u.email}${noCelular ? ' · abra este site no seu Mac para instalar' : ''}`;
+  $('#link-exe').href = cfg.windows?.exe || '#';
+  $('#link-exe').hidden = !cfg.windows?.exe;
+  EMAIL = u.email;
+  escolherSistema(cfg.windows?.exe ? SISTEMA : 'mac');
 }
+
 sb.auth.onAuthStateChange((_ev, sessao) => {
   mostrarConta(sessao);
   if (sessao && sessionStorage.getItem(VOLTOU)) {
