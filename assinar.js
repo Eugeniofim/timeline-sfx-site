@@ -3,6 +3,7 @@ const $ = (s) => document.querySelector(s);
 const cfg = window.TSFX;
 const sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseChave, { auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true } });
 const FUNCAO = `${cfg.supabaseUrl}/functions/v1/sfx-ia`;
+const PENDENTE = 'tsfx-pagar';     // o que a pessoa clicou antes de entrar: depois do login o pagamento segue sozinho
 let sessao = null;
 
 function avisar(texto) {
@@ -17,6 +18,14 @@ function mostrarConta(s) {
   $('#entrar').hidden = !!email;
   $('#sair').hidden = !email;
   $('#portal').hidden = !email;
+  if (email) retomar();
+}
+function retomar() {
+  let p = null;
+  try { p = JSON.parse(sessionStorage.getItem(PENDENTE)); sessionStorage.removeItem(PENDENTE); } catch { /* sem storage: a pessoa clica de novo */ }
+  if (!p) return;
+  const botao = [...document.querySelectorAll('[data-pagar]')].find((b) => b.dataset.tipo === p.tipo && b.dataset.forma === p.forma && (b.dataset.plano || '') === (p.plano || '') && (b.dataset.valor || '') === (p.valor || ''));
+  if (botao) irPara(botao, 'checkout', p);
 }
 const parametros = new URLSearchParams(location.search);
 if (parametros.has('pago')) avisar('Pagamento enviado. Assim que ele cair, o plano libera sozinho. No app, clique em "Já paguei: conferir".');
@@ -61,10 +70,16 @@ $('#sair').addEventListener('click', async () => { await sb.auth.signOut(); entr
 $('#portal').addEventListener('click', (e) => irPara(e.currentTarget, 'portal', {}));
 for (const b of document.querySelectorAll('[data-pagar]')) {
   b.addEventListener('click', () => {
-    if (!sessao) { entrar(); return; }
     const { tipo, plano, valor, forma } = b.dataset;
+    if (!sessao) {
+      try { sessionStorage.setItem(PENDENTE, JSON.stringify({ tipo, plano, valor, forma })); } catch { /* sem storage */ }
+      entrar();
+      return;
+    }
     irPara(b, 'checkout', { tipo, plano, valor, forma });
   });
 }
+// voltou do Stripe pela seta do navegador: a página não pode ficar presa em "Abrindo…"
+window.addEventListener('pageshow', (e) => { if (e.persisted) location.reload(); });
 sb.auth.onAuthStateChange((_ev, s) => mostrarConta(s));
 sb.auth.getSession().then(({ data }) => mostrarConta(data.session));
