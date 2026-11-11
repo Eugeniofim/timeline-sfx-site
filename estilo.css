@@ -198,6 +198,13 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 .doc a { text-underline-offset: 3px; }
 .doc-data { color: var(--tinta-2); font-size: 15px; margin-bottom: 28px; }
 
+/* o WhatsApp, preso na lateral direita */
+.whats { position: fixed; right: 0; top: 50%; z-index: 30; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 10px; transform: translateY(-50%); border-radius: 14px 0 0 14px; background: #25D366; color: var(--tinta); font: 600 14px/1 var(--texto); text-decoration: none; transition: padding .25s ease; }
+.whats:hover { padding-right: 16px; }
+.whats:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.whats svg { width: 24px; height: 24px; fill: currentColor; }
+.whats span { writing-mode: vertical-rl; transform: rotate(180deg); }
+
 /* a voz presa à rolagem (voz.js): o disco gira com a locução, para os dois lados */
 .voz { position: fixed; right: 20px; bottom: 20px; z-index: 30; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 7px; border-radius: 999px; border: 1.5px solid rgba(244, 244, 246, .24); background: var(--palco); color: var(--marfim); font: 600 15px/1 var(--texto); cursor: pointer; }
 .voz:hover { border-color: var(--amarelo); }
@@ -303,6 +310,9 @@ dialog#d-review video { height: min(90vh, 900px); height: min(90svh, 900px); wid
   .bib-dicas ol { font-size: 17px; }
   .bib-eixo { font-size: 12px; }
   .voz { right: 12px; bottom: 12px; }
+  .whats { padding: 11px 7px; }
+  .whats svg { width: 22px; height: 22px; }
+  .whats span { display: none; }
   .videos { padding-top: 96px; }
   .video-card { grid-template-columns: 118px 1fr; gap: 18px; padding: 20px; align-items: center; }
   .video-play { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
