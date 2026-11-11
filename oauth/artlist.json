@@ -1,0 +1,16 @@
+{
+  "client_id": "https://www.timelinesfx.com/oauth/artlist.json",
+  "client_name": "Timeline SFX",
+  "client_uri": "https://www.timelinesfx.com",
+  "policy_uri": "https://www.timelinesfx.com/privacidade.html",
+  "tos_uri": "https://www.timelinesfx.com/termos.html",
+  "redirect_uris": [
+    "http://127.0.0.1:53682/callback",
+    "http://127.0.0.1:53683/callback",
+    "http://127.0.0.1:53684/callback"
+  ],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "scope": "openid offline_access"
+}
