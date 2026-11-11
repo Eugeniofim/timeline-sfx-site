@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#EFE6D6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0B0D'/%3E%3Crect x='7' y='14' width='5' height='11' rx='1.5' fill='%23F5C451'/%3E%3Crect x='13.5' y='7' width='5' height='18' rx='1.5' fill='%23F5C451'/%3E%3Crect x='20' y='11' width='5' height='14' rx='1.5' fill='%23F5C451'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;600&family=Sora:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<title>Cupons · Timeline SFX</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="./" aria-label="Timeline SFX, início">
+    <span class="barras" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="nome">Timeline <b>SFX</b></span>
+  </a>
+</header>
+<main class="assinar">
+  <h1>Cupons de teste.</h1>
+  <p class="assinar-lead">Cada cupom dá créditos da nossa IA e libera o ElevenLabs do estúdio por alguns dias. Mande o link para o testador: ele entra com o Google e o cupom já vem preenchido.</p>
+  <p class="assinar-aviso" id="aviso" role="status" hidden></p>
+  <div class="assinar-conta">
+    <span id="conta-texto">Entre com a conta do estúdio.</span>
+    <button class="botao botao--tinta botao--p" type="button" id="entrar">Entrar com o Google</button>
+  </div>
+  <form class="cupons-form" id="novo" hidden>
+    <label>Código<input id="c-codigo" required maxlength="30" placeholder="TESTE-JOAO"></label>
+    <label>Créditos<input id="c-creditos" type="number" min="1" max="10000" value="500"></label>
+    <label>Dias de ElevenLabs<input id="c-dias" type="number" min="1" max="365" value="30"></label>
+    <label>Quantas pessoas<input id="c-usos" type="number" min="1" max="1000" value="1"></label>
+    <label>Vale para usar por (dias)<input id="c-validade" type="number" min="1" max="365" value="30"></label>
+    <label>Para quem<input id="c-nota" maxlength="120" placeholder="Ex.: João, produtora X"></label>
+    <button class="botao botao--amarelo" type="submit">Criar cupom</button>
+  </form>
+  <div class="cupons-lista" id="lista"></div>
+</main>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script type="module" src="cupons.js"></script>
+</body>
+</html>

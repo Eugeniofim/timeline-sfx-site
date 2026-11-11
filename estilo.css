@@ -237,6 +237,18 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 .assinar-conta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; font-size: 17px; }
 .assinar-conta [hidden] { display: none; }
 .assinar .planos { margin-top: 36px; }
+.assinar-cupom { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin-top: 22px; padding: 16px 18px; border-radius: var(--raio-p); background: var(--papel); max-width: 640px; }
+.assinar-cupom label { font-size: 17px; font-weight: 600; margin-right: 4px; }
+.assinar-cupom input, .cupons-form input { flex: 1 1 180px; min-height: 44px; padding: 0 14px; border: 1.5px solid var(--linha); border-radius: 12px; background: #fff; font: 600 16px/1 var(--mono); color: var(--tinta); text-transform: uppercase; }
+.cupons-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 28px; padding: 22px; border-radius: var(--raio-p); background: var(--papel); max-width: 900px; }
+.cupons-form label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+.cupons-form input { text-transform: none; }
+.cupons-form .botao { align-self: end; }
+.cupons-lista { margin-top: 28px; display: grid; gap: 12px; max-width: 900px; }
+.cupom-linha { display: grid; gap: 6px; padding: 16px 18px; border-radius: var(--raio-p); background: var(--papel); font-size: 16px; }
+.cupom-linha b { font: 700 18px/1.2 var(--mono); }
+.cupom-linha .acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.cupom-linha.desligado { opacity: .55; }
 .plano-formas { display: grid; gap: 10px; margin-top: auto; }
 .plano--escolhido { outline: 3px solid var(--amarelo); outline-offset: 3px; }
 .plano-assinar { display: block; margin-top: 12px; text-align: center; font-size: 16px; font-weight: 600; text-underline-offset: 3px; }

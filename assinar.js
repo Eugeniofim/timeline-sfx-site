@@ -18,7 +18,11 @@ function mostrarConta(s) {
   $('#entrar').hidden = !!email;
   $('#sair').hidden = !email;
   $('#portal').hidden = !email;
-  if (email) retomar();
+  if (email) {
+    let c = null;
+    try { c = sessionStorage.getItem(CUPOM_PENDENTE); sessionStorage.removeItem(CUPOM_PENDENTE); } catch { /* sem storage */ }
+    if (c) usarCupom(c); else retomar();
+  }
 }
 function retomar() {
   let p = null;
@@ -66,6 +70,30 @@ async function irPara(botao, rota, corpo) {
     botao.textContent = texto;
   }
 }
+// cupom de testador: os créditos entram na conta e o ElevenLabs do estúdio fica liberado por alguns dias
+const CUPOM_PENDENTE = 'tsfx-cupom';
+const data = (d) => new Date(d).toLocaleDateString('pt-BR');
+async function usarCupom(codigo) {
+  const b = $('#cupom button');
+  b.disabled = true;
+  try {
+    const r = await fetch(`${FUNCAO}/cupom`, { method: 'POST', headers: { authorization: `Bearer ${sessao.access_token}`, 'content-type': 'application/json' },
+                                              body: JSON.stringify({ codigo }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.erro || 'Não deu para usar o cupom agora. Tente de novo.');
+    avisar(`Pronto: ${j.creditos.toLocaleString('pt-BR')} créditos de IA na sua conta. Até ${data(j.testador_ate)}, você também gera sons pelo ElevenLabs do estúdio, sem chave nenhuma. Baixe o app na página inicial e entre com esta mesma conta.`);
+    $('#cupom-codigo').value = '';
+  } catch (e) { avisar(e.message); }
+  b.disabled = false;
+}
+$('#cupom').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const codigo = $('#cupom-codigo').value.trim();
+  if (!codigo) return;
+  if (!sessao) { try { sessionStorage.setItem(CUPOM_PENDENTE, codigo); } catch { /* sem storage */ } entrar(); return; }
+  usarCupom(codigo);
+});
+if (parametros.get('cupom')) $('#cupom-codigo').value = parametros.get('cupom').slice(0, 40);
 $('#entrar').addEventListener('click', entrar);
 $('#sair').addEventListener('click', async () => { await sb.auth.signOut(); entrar(); });
 $('#portal').addEventListener('click', (e) => irPara(e.currentTarget, 'portal', {}));

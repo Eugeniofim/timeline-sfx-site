@@ -30,6 +30,11 @@
     <button class="botao botao--fio botao--p" type="button" id="portal" hidden>Trocar cartão ou cancelar</button>
     <button class="botao botao--fio botao--p" type="button" id="sair" hidden>Trocar de conta</button>
   </div>
+  <form class="assinar-cupom" id="cupom">
+    <label for="cupom-codigo">Tem um cupom de teste?</label>
+    <input id="cupom-codigo" name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex.: TESTE-JOAO" maxlength="40" required>
+    <button class="botao botao--tinta botao--p" type="submit">Usar cupom</button>
+  </form>
   <div class="planos">
       <article class="plano" id="plano-Pro">
         <span class="etiqueta">Para quem tem chave de IA</span>
