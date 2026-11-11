@@ -38,14 +38,18 @@ $('[data-ligar-som]').addEventListener('click', () => {
 });
 new IntersectionObserver(([e]) => { if (!e.isIntersecting && !demo.muted) ligarSom(false); }, { threshold: 0.15 }).observe(demo);
 
-// ---- o review completo
+// ---- o review completo e os vídeos em pé (10/11): todos tocam no mesmo diálogo
 const dlg = $('#d-review'), review = $('#review');
-$('#abrir-review').addEventListener('click', () => {
+function abrirVideo(src, capa, nome) {
   ligarSom(false);
   lenis?.stop();
+  if (review.getAttribute('src') !== src) { review.poster = capa || ''; review.src = src; }
+  dlg.setAttribute('aria-label', nome);
   dlg.showModal();
   review.play().catch(() => {});
-});
+}
+$('#abrir-review').addEventListener('click', () => abrirVideo('midia/review.mp4', 'midia/poster-gls.jpg', 'Review completo do Timeline SFX'));
+for (const b of document.querySelectorAll('[data-video]')) b.addEventListener('click', () => abrirVideo(b.dataset.video, b.dataset.capa, b.dataset.nome));
 // o evento "close" pode atrasar: o áudio tem que parar na hora, em qualquer jeito de fechar
 const parouReview = () => { review.pause(); lenis?.start(); };
 const fecharReview = () => { dlg.close(); parouReview(); };
