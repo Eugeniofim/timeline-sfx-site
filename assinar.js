@@ -28,7 +28,7 @@ function retomar() {
   if (botao) irPara(botao, 'checkout', p);
 }
 const parametros = new URLSearchParams(location.search);
-if (parametros.has('pago')) avisar('Pagamento enviado. Assim que ele cair, o plano libera sozinho. No app, clique em "Já paguei: conferir".');
+if (parametros.has('pago')) avisar('Pagamento enviado. Assim que ele cair, o plano libera sozinho e você recebe os dados no seu e-mail. Para usar, baixe o app na página inicial e entre com esta mesma conta.');
 if (parametros.has('cancelou')) avisar('O pagamento não foi concluído. Nada foi cobrado.');
 const escolhido = parametros.get('plano');
 if (escolhido && /^(Pro|Premium|Full)$/.test(escolhido)) {
