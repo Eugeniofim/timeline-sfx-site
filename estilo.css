@@ -101,7 +101,7 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 .passo h2 { margin-top: 14px; font-size: clamp(2.8rem, 6.4vw, 6.6rem); }
 .passo p { margin-top: 16px; max-width: 36ch; font-size: 20px; line-height: 1.38; color: var(--marfim); }
 .passo-dado { display: inline-block; margin-top: 18px; font: 400 15px/1 var(--mono); color: var(--marfim-2); }
-.cena-barra { position: absolute; right: 48px; bottom: 60px; width: 160px; height: 2px; background: rgba(244, 244, 246, .2); }
+.cena-barra { position: absolute; right: 48px; bottom: 84px; width: 160px; height: 2px; background: rgba(244, 244, 246, .2); }
 .cena-barra i { display: block; height: 100%; width: 100%; background: var(--amarelo); transform: scaleX(0); transform-origin: 0 50%; }
 
 /* modelo aberto */
@@ -198,6 +198,15 @@ h1, h2 { font-family: var(--titulo); font-weight: 800; font-stretch: 125%; font-
 .doc a { text-underline-offset: 3px; }
 .doc-data { color: var(--tinta-2); font-size: 15px; margin-bottom: 28px; }
 
+/* a voz presa à rolagem (voz.js): o disco gira com a locução, para os dois lados */
+.voz { position: fixed; right: 20px; bottom: 20px; z-index: 30; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px 0 7px; border-radius: 999px; border: 1.5px solid rgba(244, 244, 246, .24); background: var(--palco); color: var(--marfim); font: 600 15px/1 var(--texto); cursor: pointer; }
+.voz:hover { border-color: var(--amarelo); }
+.voz:focus-visible { outline-color: var(--amarelo); }
+.voz[aria-pressed="true"] { border-color: var(--amarelo); }
+.voz:disabled { opacity: .6; cursor: default; }
+.voz-disco { position: relative; flex: none; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle, var(--amarelo) 0 19%, var(--palco) 20% 25%, transparent 26%), repeating-radial-gradient(circle, #33333b 0 1px, #17171b 1px 3px); }
+.voz-disco::after { content: ''; position: absolute; left: 50%; top: 2px; width: 2px; height: 7px; margin-left: -1px; border-radius: 1px; background: var(--marfim); }
+
 /* vídeos em pé (10/11): o overview e a apresentação; tocam no mesmo diálogo do review */
 .videos { padding: 150px var(--margem) 0; }
 .videos h2 { font-size: clamp(2.5rem, 5.5vw, 6.2rem); }
@@ -284,15 +293,16 @@ dialog#d-review video { height: min(90vh, 900px); height: min(90svh, 900px); wid
   .manifesto { padding-block: 96px; }
   .sons { margin-top: 56px; gap: 12px 18px; }
   .cena-fixa { padding: 10px; }
-  .passos { left: 24px; bottom: 44px; width: calc(100% - 48px); }
+  .passos { left: 24px; bottom: 96px; width: calc(100% - 48px); }
   .passo p { font-size: 18px; }
-  .cena-barra { left: 24px; right: 24px; width: auto; bottom: 24px; }
+  .cena-barra { left: 24px; right: 24px; width: auto; bottom: 76px; }
   .aberto { padding-top: 96px; }
   .card--biblioteca { padding: 30px; min-height: 0; }
   .conectores { padding: 4px 28px; }
   .arquivos { font-size: 13px; }
   .bib-dicas ol { font-size: 17px; }
   .bib-eixo { font-size: 12px; }
+  .voz { right: 12px; bottom: 12px; }
   .videos { padding-top: 96px; }
   .video-card { grid-template-columns: 118px 1fr; gap: 18px; padding: 20px; align-items: center; }
   .video-play { width: 46px; height: 46px; margin: -23px 0 0 -23px; }

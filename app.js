@@ -1,5 +1,9 @@
 // Rolagem, vídeo com som, cena 3D e o login para baixar o app.
+import { criarVoz } from './voz.js';
+
 const $ = (s) => document.querySelector(s);
+const FAIXAS = [[0, 0.24], [0.24, 0.54], [0.56, 0.82], [0.85, 1.01]];   // em que parte da cena 3D cada passo aparece
+let voz = null;
 const parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const temWebGL = (() => { try { return !!document.createElement('canvas').getContext('webgl2'); } catch { return false; } })();
 gsap.registerPlugin(ScrollTrigger);
@@ -7,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 // ---- rolagem suave
 let lenis = null;
 if (!parado) {
-  lenis = new Lenis({ lerp: 0.09 });
+  lenis = new Lenis({ lerp: 0.09, prevent: () => false });   // sem o prevent esta versão dá erro a cada giro do mouse e a rolagem suave não entra
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -27,7 +31,7 @@ const demo = $('#demo'), som = $('#som');
 function ligarSom(ligar, doComeco) {
   demo.muted = !ligar;
   if (ligar && doComeco) demo.currentTime = 0;
-  if (ligar) demo.play().catch(() => {});
+  if (ligar) { demo.play().catch(() => {}); voz?.desligar(); }
   som.setAttribute('aria-pressed', String(ligar));
   som.querySelector('span').textContent = ligar ? 'Desligar o som' : 'Ligar o som';
 }
@@ -42,6 +46,7 @@ new IntersectionObserver(([e]) => { if (!e.isIntersecting && !demo.muted) ligarS
 const dlg = $('#d-review'), review = $('#review');
 function abrirVideo(src, capa, nome) {
   ligarSom(false);
+  voz?.pausar(true);
   lenis?.stop();
   if (review.getAttribute('src') !== src) { review.poster = capa || ''; review.src = src; }
   dlg.setAttribute('aria-label', nome);
@@ -51,7 +56,7 @@ function abrirVideo(src, capa, nome) {
 $('#abrir-review').addEventListener('click', () => abrirVideo('midia/review.mp4', 'midia/poster-gls.jpg', 'Review completo do Timeline SFX'));
 for (const b of document.querySelectorAll('[data-video]')) b.addEventListener('click', () => abrirVideo(b.dataset.video, b.dataset.capa, b.dataset.nome));
 // o evento "close" pode atrasar: o áudio tem que parar na hora, em qualquer jeito de fechar
-const parouReview = () => { review.pause(); lenis?.start(); };
+const parouReview = () => { review.pause(); lenis?.start(); voz?.pausar(false); };
 const fecharReview = () => { dlg.close(); parouReview(); };
 $('#fechar-review').addEventListener('click', fecharReview);
 dlg.addEventListener('cancel', parouReview);
@@ -60,6 +65,7 @@ dlg.addEventListener('click', (e) => { if (e.target === dlg) fecharReview(); });
 
 // ---- movimento
 const passos = [...document.querySelectorAll('.passo')];
+voz = criarVoz({ passos, faixas: FAIXAS, aoLigar: () => ligarSom(false) });
 if (parado || !temWebGL) {
   document.documentElement.classList.add('sem-movimento');
 } else {
@@ -94,7 +100,6 @@ if (parado || !temWebGL) {
     const { criarCena } = await import('./cena3d.js');
     const cena = await criarCena($('#cena3d'), $('#cena-palco'), $('#rotulos'));
     const fixa = document.querySelector('.cena-fixa'), barra = $('#cena-progresso');
-    const FAIXAS = [[0, 0.24], [0.24, 0.54], [0.56, 0.82], [0.85, 1.01]];
     const atualizar = (p) => {
       cena.progresso(p);
       barra.style.transform = `scaleX(${p})`;
