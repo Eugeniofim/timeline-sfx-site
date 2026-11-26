@@ -7,8 +7,8 @@ window.TSFX = {
   dmg: 'https://github.com/Eugeniofim/timeline-sfx-site/releases/download/v0.2.47/Timeline-SFX-0.2.47.dmg',
   // 11/11: a versão Windows (montada e conferida num Windows de verdade, no GitHub Actions)
   windows: {
-    versao: '0.2.46',
+    versao: '0.2.47',
     tamanho: '388 MB',
-    exe: 'https://github.com/Eugeniofim/timeline-sfx-site/releases/download/v0.2.46/Timeline-SFX-0.2.46-Windows.exe',
+    exe: 'https://github.com/Eugeniofim/timeline-sfx-site/releases/download/v0.2.47/Timeline-SFX-0.2.47-Windows.exe',
   },
 };
